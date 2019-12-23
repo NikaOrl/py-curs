@@ -1,3 +1,5 @@
 # py-curs
 
-Start with python3 main.py
+Start with 
+
+<i>python3 main.py</i>
