@@ -1,0 +1,97 @@
+<html>
+  <body>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <div id="org_div1"></div>
+    <script>
+      function init() {
+        if (localStorage.getItem('role') == 'admin') {
+          var newDiv = document.createElement('div');
+          newDiv.innerHTML = `
+            <div class="container">
+                <div class="card border-0 shadow my-5">
+                    <div class="card-body p-5">
+                    <h1 class="font-weight-light">Admin Page</h1>
+                    <p class="lead">Welcome</p>
+                    <div style="height: 700px"></div>
+                    </div>
+                </div>
+            </div>`;
+          my_div = document.getElementById('org_div1');
+          document.body.insertBefore(newDiv, my_div);
+        } else {
+          var newDiv = document.createElement('div');
+          newDiv.innerHTML = `
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="card card-signin my-5">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Sign In</h5>
+                                <form class="form-signin">
+                                    <div class="form-label-group">
+                                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus name="userid">
+                                        <label for="inputEmail"></label>
+                                    </div>
+
+                                    <div class="form-label-group">
+                                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="pswrd">
+                                        <label for="inputPassword"></label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Remember password</label>
+                                    </div>
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" onclick="check(this.form)">Sign in</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+          my_div = document.getElementById('org_div1');
+          document.body.insertBefore(newDiv, my_div);
+        }
+      }
+
+      init();
+
+      function check(form) {
+        /*function to check userid & password*/
+        /*the following code checkes whether the entered userid and password are matching*/
+        if (
+          form.userid.value == 'admin' &&
+          form.pswrd.value == 'adminPassword'
+        ) {
+          localStorage.setItem('role', 'admin');
+          window.location = 'http://localhost:8880';
+        } else if (form.userid.value == 'alex' && form.pswrd.value == 'alex') {
+          window.location = 'http://localhost:8880/?name=Nika';
+        } else {
+          alert('Error Password or Username'); /*displays error message*/
+        }
+      }
+    </script>
+  </body>
+</html>

